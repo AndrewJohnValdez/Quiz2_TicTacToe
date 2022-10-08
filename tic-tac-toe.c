@@ -39,7 +39,7 @@ int main(void)
     
     //read information from console, reading player commands, determine type of game
     scanf("%d", &userStartChoice);
-    printf("You have entered choice %d\n", &userStartChoice);
+    printf("You have entered choice %d \n", &userStartChoice);
 
     initializeBoard();
 
@@ -71,9 +71,10 @@ void playerVSplayer(void)
         player2Move();
         counter++;
         done = check(); /* see if winner */
+        printf("\n");
     } while(done == ' ');
 
-    if(done=='X') {
+    if(done=='X') { //must make resdesign check statement to account for draws
         printf("Player 1 won!\n");
     } else {
         printf("Player 2 won!\n");
@@ -87,7 +88,7 @@ void playerVSplayer(void)
 void playerVScomputer(void)
 {
     do {
-        printf("The current status is: \n");
+        printf("The current status is: ");
         displayBoard();
         printf("\n");
         player1Move();
@@ -122,7 +123,8 @@ void player1Move(void)
 {
     int x, y;
 
-    printf("player1: make your move ");
+    printf("player1: make your move\n ");
+    printf("\n");
     scanf("%d%*c%d", &x, &y);
 
     x--; y--;
@@ -141,7 +143,8 @@ void player2Move(void)
 {
     int x, y;
 
-    printf("player2: make your move ");
+    printf("player2: make your move\n ");
+    printf("\n");
     scanf("%d%*c%d", &x, &y);
 
     x--; y--;
@@ -161,8 +164,12 @@ void computerMove(void)
   int i, j;
   for(i=0; i<3; i++){
     for(j=0; j<3; j++)
-      if(board[i][j]==' ') break;
-    if(board[i][j]==' ') break;
+      if(board[i][j]==' ') {
+        break;
+      }
+    if(board[i][j]==' ') {
+        break;
+    }
   }
 
   if(i*j==9)  {
@@ -186,7 +193,6 @@ void displayBoard(void)
         }
     }
     printf("\n+-----------+\n");
-    printf("\n");
 }
 
 /* See if there is a winner. */
@@ -218,7 +224,8 @@ char check(void)
     }
 
     if(counter >= 9) {
-        return 0;
+        printf("Draw!");
+        exit(0);
     }
 
     return ' ';
