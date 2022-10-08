@@ -15,6 +15,7 @@
 char board[3][3];  /* the tic tac toe board */
 char done = ' ';
 int counter; //count number of loops to end game in a draw
+int userStartChoice;
 
 char check(void);
 void initializeBoard(void);
@@ -28,6 +29,7 @@ void playerVSplayer(void);
 int main(void)
 {
     int userStartChoice;
+    int key;
 
     //prompt user for game they wish to play
     printf("================\n");
@@ -40,19 +42,31 @@ int main(void)
     //read information from console, reading player commands, determine type of game
     scanf("%d", &userStartChoice);
     printf("You have entered choice %d \n", userStartChoice);
-
-    initializeBoard();
-
-    //put in if statement to start game based on player choice
-    if(userStartChoice == 1) {
-        playerVSplayer();
-    } else if(userStartChoice == 2) {
-        playerVScomputer();
-    } else {
-        printf("Invalid choice\n");
-        return 0;
+    if(userStartChoice == 1 || userStartChoice == 2) {
+        key = 1;
     }
 
+    //put in if statement to start game based on player choice
+    while(key = 1) {
+        initializeBoard();
+        if(userStartChoice == 1) {
+            playerVSplayer();
+        } else if(userStartChoice == 2) {
+            playerVScomputer();
+        } else {
+            printf("Invalid choice\n");
+            return 0;
+        }
+
+        printf("play again?\n");
+        printf("1 - Yes\n");
+        printf("2 - No\n");
+        scanf("%d", &userStartChoice);
+        printf("You have entered choice %d \n", userStartChoice);
+        if(userStartChoice == 2) {
+            exit(0);
+        }
+    }
     return 0;
 }
 
@@ -76,14 +90,14 @@ void playerVSplayer(void)
         printf("\n");
     } while(done == ' ');
 
-    if(done=='X') { //must make resdesign check statement to account for draws
+    if(done=='X') { 
         printf("Player 1 won!\n");
     } else {
         printf("Player 2 won!\n");
     }
     
     displayBoard(); /* show final positions */
-
+    return;
 }
 
 //player vs computer function to be called
@@ -111,6 +125,7 @@ void playerVScomputer(void)
     }
 
     displayBoard(); /* show final positions */
+    return;
 }
 
 /* Initialize the board. */
@@ -175,8 +190,8 @@ void computerMove(void)
   }
 
   if(i*j==9)  {
-    printf("draw\n");
-    exit(0);
+    printf("draw!\n");
+    //exit(0);
   }
   else
     board[i][j] = 'O';
@@ -227,7 +242,6 @@ char check(void)
 
     if(counter >= 9) {
         printf("Draw!");
-        exit(0);
     }
 
     return ' ';
