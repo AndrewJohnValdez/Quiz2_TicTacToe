@@ -52,6 +52,7 @@ int main(void)
         printf("2 - No\n");
         scanf("%d", &userStartChoice);
         printf("You have entered choice: %d \n", userStartChoice);
+        counter = 0;
         if(userStartChoice == 2) {
             exit(0);
         }
@@ -81,7 +82,7 @@ void playerVSplayer(void)
 
     if(done=='X') { 
         printf("Player 1 won!\n");
-    } else if (counter >= 9) {
+    } else if (done == 'Z') {
         printf("Draw!\n");
     } else { 
         printf("Player 2 won!\n");
@@ -231,7 +232,7 @@ char check(void)
     }
 
     if(counter >= 9) {
-        printf("Draw!");
+        return 'Z';
     }
 
     return ' ';
