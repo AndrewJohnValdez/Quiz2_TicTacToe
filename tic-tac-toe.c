@@ -1,14 +1,3 @@
-//Tic Tac Toe game between 2 players or player vs computer
-//everything must work in one file
-
-/*Things to try/do: 
-    Randomizer to imitate computer 
-    have a loop back and forth from p1 to p2
-    create board (2d array?)
-    must check if last choice is a winning choice
-*/
-
-//problem with outputting a tie message
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -62,7 +51,7 @@ int main(void)
         printf("1 - Yes\n");
         printf("2 - No\n");
         scanf("%d", &userStartChoice);
-        printf("You have entered choice %d \n", userStartChoice);
+        printf("You have entered choice: %d \n", userStartChoice);
         if(userStartChoice == 2) {
             exit(0);
         }
@@ -92,7 +81,9 @@ void playerVSplayer(void)
 
     if(done=='X') { 
         printf("Player 1 won!\n");
-    } else {
+    } else if (counter >= 9) {
+        printf("Draw!\n");
+    } else { 
         printf("Player 2 won!\n");
     }
     
@@ -191,7 +182,6 @@ void computerMove(void)
 
   if(i*j==9)  {
     printf("draw!\n");
-    //exit(0);
   }
   else
     board[i][j] = 'O';
