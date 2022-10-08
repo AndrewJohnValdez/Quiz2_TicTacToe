@@ -39,7 +39,7 @@ int main(void)
     
     //read information from console, reading player commands, determine type of game
     scanf("%d", &userStartChoice);
-    printf("You have entered choice %d \n", &userStartChoice);
+    printf("You have entered choice %d \n", userStartChoice);
 
     initializeBoard();
 
@@ -66,7 +66,9 @@ void playerVSplayer(void)
         player1Move();
         counter++;
         done = check(); /* see if winner */
-        if(done!= ' ') break; /* winner */
+        if(done!= ' ') { 
+            break; /* winner */
+        }
         displayBoard();
         player2Move();
         counter++;
@@ -94,7 +96,9 @@ void playerVScomputer(void)
         player1Move();
         counter++;
         done = check(); /* see if winner */
-        if(done!= ' ') break; /* winner*/
+        if(done!= ' ') {
+            break; 
+        } /* winner*/
         computerMove();
         counter++;
         done = check(); /* see if winner */
@@ -123,8 +127,7 @@ void player1Move(void)
 {
     int x, y;
 
-    printf("player1: make your move\n ");
-    printf("\n");
+    printf("player1: make your move\n");
     scanf("%d%*c%d", &x, &y);
 
     x--; y--;
@@ -143,8 +146,7 @@ void player2Move(void)
 {
     int x, y;
 
-    printf("player2: make your move\n ");
-    printf("\n");
+    printf("player2: make your move\n");
     scanf("%d%*c%d", &x, &y);
 
     x--; y--;
